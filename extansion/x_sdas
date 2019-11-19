@@ -1,0 +1,45 @@
+
+console = chrome.extension.getBackgroundPage().console;
+
+function on(id, event, fnc) {
+    var el = document.getElementById(id);
+    el.addEventListener(event, fnc);
+}
+
+function getDataToSend() {
+    const formData = new FormData();
+    formData.append("html", "adadada");
+}
+
+const url = 'localhost';
+
+document.addEventListener('DOMContentLoader', function () {
+    console.log("READY!");
+    on('click', function () {
+
+        chrome.tabs.getSelected(null, function(tab) {
+            d = document;
+
+            var el = document.createElement('p');
+            el.innerHTML = 'klik!';
+
+            d.body.appendChild(el);
+        });
+        console.log('clicked');
+        fetch(url, {
+                method: "post",
+                body: getDataToSend()
+            })
+            .then(resp => {
+                console.log("OK:");
+                console.dir(resp);
+            })
+            .catch(error => {
+                console.log("ERR: ", error);
+            });
+    });
+});
+
+
+
+

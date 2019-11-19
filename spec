@@ -1,0 +1,3 @@
+rodzaje:
+    prawda fałsz:
+
