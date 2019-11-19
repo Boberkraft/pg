@@ -1,4 +1,4 @@
-from form import Form
+from .form import Form
 import re
 
 class CheckboxesForm(Form):

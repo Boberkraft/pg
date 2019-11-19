@@ -1,7 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
+
+from pg.server import db
 from flask import Flask
 
-db = SQLAlchemy()
+
 
 
 class UnprocessedScrapedPage(db.Model):
@@ -11,7 +12,7 @@ class UnprocessedScrapedPage(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
     def __repr__(self):
-        return f"<UnprocessedScrapedPage id: {self.id}, size: {len(self.html)} >"
+        return f"<UnprocessedScrapedPage id: {self.id}, size: {len(self.html)}>"
 
 
 class ScrapedPage(db.Model):
@@ -25,7 +26,7 @@ class ScrapedPage(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
     def __repr__(self):
-        return f"<ScrapedPage id: {self.id}, size: {len(self.html)} >"
+        return f"<ScrapedPage id: {self.id}, size: {len(self.html)}>"
 
 
 class Quiz(db.Model):
@@ -49,12 +50,12 @@ class Question(db.Model):
     answer = db.Column(db.String(10000), nullable=False)
 
     def __repr__(self):
-        return f"<Question id: {self.id}, quiz_id: {self.quiz_id} >"
+        return f"<Question id: {self.id}, quiz_id: {self.quiz_id}>"
 
 def show():
     pages = UnprocessedScrapedPage.query.all()
     for page in pages:
-        print(page)
+        pass
 
 if __name__ == '__main__':
 

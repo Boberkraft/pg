@@ -1,8 +1,7 @@
-from form import Form
-import re
+from .form import Form
+
 
 class TrueFalseForm(Form):
-
     @staticmethod
     def is_in_type(form):
         return all([
@@ -16,4 +15,4 @@ class TrueFalseForm(Form):
 
     @staticmethod
     def contains_2_radios(form):
-        return len(form.find_all('input')) == 2
+        return len(form.html().find_all('input')) == 2

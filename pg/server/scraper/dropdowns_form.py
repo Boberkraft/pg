@@ -1,7 +1,13 @@
-from form import Form
+from .form import Form
 import re
 
+
 class DropdownsForm(Form):
+    def question_html(self):
+        self.html()
+        # TODO: TUTAJ HE!
+        self.html().find('div', class_='formulation clearfix').find('p')
+
     @staticmethod
     def is_in_type(form):
         return all([

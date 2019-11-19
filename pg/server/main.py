@@ -1,15 +1,13 @@
+import sys
+sys.path.append('./..')
 from flask import Flask
 from flask import jsonify
 from flask import request
-from database import db, show, UnprocessedScrapedPage
 from random import randint
 from threading import Thread
-from scraper import scrap
-DATABASE_PATH = 'test.db'
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{DATABASE_PATH}"
-
+from scraper.scrap import process_pages_from_db
+from pg.server import app, db
+from pg.server.database import UnprocessedScrapedPage
 
 def nice_s(s):
     SIZE = 15
@@ -32,13 +30,12 @@ def send_data():
 
 
 def queue_page(html):
+
     raw_page = UnprocessedScrapedPage(html=html)
     db.session.add(raw_page)
     db.session.commit()
     # show()
 
-
 if __name__ == '__main__':
-    db.init_app(app)
-    Thread(target=)
-    app.run(debug=True)
+    Thread(target=process_pages_from_db).start()
+    app.run(debug=False)

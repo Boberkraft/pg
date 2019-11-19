@@ -3,8 +3,7 @@ import re
 
 class Form:
     @staticmethod
-    def find_all(html):
-        soup = bs4.BeautifulSoup(html, 'html.parser')
+    def find_all(soup):
         x = []
         for d in soup.find_all('div', id=re.compile(r'^question-\d+-\d+$')):
             x.append(Form(d))

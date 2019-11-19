@@ -14,7 +14,7 @@ function prepareDataToSend(data) {
 const url = 'http://127.0.0.1:5000/send';
 
 function getHostDOM() {
-    return document.body.innerHTML;
+    return document.body.outerHTML;
 }
 
 function sendData(data) {
