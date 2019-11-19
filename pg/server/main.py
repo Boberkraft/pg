@@ -3,7 +3,8 @@ from flask import jsonify
 from flask import request
 from database import db, show, UnprocessedScrapedPage
 from random import randint
-
+from threading import Thread
+from scraper import scrap
 DATABASE_PATH = 'test.db'
 
 app = Flask(__name__)
@@ -39,4 +40,5 @@ def queue_page(html):
 
 if __name__ == '__main__':
     db.init_app(app)
+    Thread(target=)
     app.run(debug=True)
